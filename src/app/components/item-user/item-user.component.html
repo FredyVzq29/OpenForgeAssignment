@@ -1,3 +1,9 @@
-<p>
-  item-user works!
-</p>
+<ion-item>    
+  <ion-avatar slot="start">
+    <img src="{{user_obj.avatar_url}}" />
+  </ion-avatar>
+  
+  <ion-label>
+    <h2>{{user_obj.login}}</h2>
+  </ion-label>
+</ion-item>

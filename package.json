@@ -1,7 +1,7 @@
 {
   "name": "OpenForgeAssignment",
   "version": "0.0.1",
-  "author": "Ionic Framework",
+  "author": "FredyVzq29",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
@@ -19,12 +19,16 @@
     "@angular/platform-browser": "~13.2.2",
     "@angular/platform-browser-dynamic": "~13.2.2",
     "@angular/router": "~13.2.2",
+    "@awesome-cordova-plugins/in-app-browser": "^5.41.0",
     "@capacitor/app": "1.1.1",
     "@capacitor/core": "3.5.1",
     "@capacitor/haptics": "1.1.4",
     "@capacitor/keyboard": "1.2.2",
     "@capacitor/status-bar": "1.0.8",
     "@ionic/angular": "^6.0.0",
+    "@ngrx/store": "^13.2.0",
+    "@ngrx/store-devtools": "^13.2.0",
+    "cordova-plugin-inappbrowser": "^5.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
@@ -49,6 +53,7 @@
     "eslint": "^7.6.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsdoc": "30.7.6",
+    "eslint-plugin-ngrx": "^2.0.0",
     "eslint-plugin-prefer-arrow": "1.2.2",
     "jasmine-core": "~3.8.0",
     "jasmine-spec-reporter": "~5.0.0",

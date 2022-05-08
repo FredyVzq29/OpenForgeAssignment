@@ -1,27 +1,29 @@
 <ion-card>
-  <img src="https://avatars.githubusercontent.com/u/1?v=4" />
+  <img src="{{data.avatar_url}}" />
 
   <ion-card-header>
-    <ion-card-title>Name</ion-card-title>
-    <ion-card-subtitle>Location</ion-card-subtitle>
+    <span>{{data.name}}</span>
+
+    <ion-card-title color="primary">{{data.login}}</ion-card-title>
+    <ion-card-subtitle *ngIf="data.location != null">{{data.location}}</ion-card-subtitle>
   </ion-card-header>
-
-  <ion-item lines="none">
-    <ion-label>
-      Enterprise name
-    </ion-label>
-    <ion-note slot="end">2 repos</ion-note>
-  </ion-item>
-
+  
   <ion-card-content>
-    <p><b>Bio</b></p>
-    <p>
-      Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the
-    Wisconsin Territory in 1836.
-    </p>
+
+    <ion-text color="primary">
+      <h2>Company and repos</h2>
+    </ion-text>
+    <p>{{data.company}}</p>
+    <p>{{data.public_repos}} public repos</p>
+    
+    <hr>
+
+    <ion-text color="primary"><h2>Bio</h2></ion-text>
+    <p>{{data.bio}}</p>
+    
   </ion-card-content>
 
-  <ion-button expand="full" color="secondary">
+  <ion-button *ngIf="data.blog != ''" expand="full" color="secondary" (click)="openWebView(data.blog)">
     <ion-icon slot="icon-only" name="globe-outline"></ion-icon>
   </ion-button>
 </ion-card>

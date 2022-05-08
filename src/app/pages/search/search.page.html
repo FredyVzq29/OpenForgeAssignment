@@ -8,12 +8,15 @@
   <ion-searchbar 
   mode="ios" 
   placeholder="Search by login information"
+
+  (keyup.enter)="searchUser()"
+  [(ngModel)]="value_to_search"
   ></ion-searchbar>
 
   <ion-grid>
       <ion-row>
         <ion-col size="12">
-          <app-detail-user></app-detail-user>
+          <app-detail-user *ngIf="user_data != null" [data]="user_data"></app-detail-user>
         </ion-col>
       </ion-row>
   </ion-grid>
