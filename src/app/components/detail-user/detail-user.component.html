@@ -1,0 +1,29 @@
+<ion-card>
+  <img src="{{data.avatar_url}}" />
+
+  <ion-card-header>
+    <span>{{data.name}}</span>
+
+    <ion-card-title color="primary">{{data.login}}</ion-card-title>
+    <ion-card-subtitle *ngIf="data.location != null">{{data.location}}</ion-card-subtitle>
+  </ion-card-header>
+  
+  <ion-card-content>
+
+    <ion-text color="primary">
+      <h2>Company and repos</h2>
+    </ion-text>
+    <p>{{data.company}}</p>
+    <p>{{data.public_repos}} public repos</p>
+    
+    <hr>
+
+    <ion-text color="primary"><h2>Bio</h2></ion-text>
+    <p>{{data.bio}}</p>
+    
+  </ion-card-content>
+
+  <ion-button *ngIf="data.blog != ''" expand="full" color="secondary" (click)="openWebView(data.blog)">
+    <ion-icon slot="icon-only" name="globe-outline"></ion-icon>
+  </ion-button>
+</ion-card>

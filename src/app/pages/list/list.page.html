@@ -1,0 +1,21 @@
+<!-- For Android title -->
+<app-md-tool-bar [page_name]="title_page"></app-md-tool-bar>
+
+<ion-content [fullscreen]="true">
+  <!-- For Iphone title -->
+  <app-ios-tool-bar [page_name]="title_page"></app-ios-tool-bar>
+  
+  <ion-row>  
+    <ion-col>
+      <ion-list>
+        <app-item-user *ngFor="let a of users_list" [user_obj]="a"></app-item-user>
+      </ion-list>
+    
+      <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="lines" loadingText="Loading users...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-col>
+  </ion-row>
+</ion-content>
