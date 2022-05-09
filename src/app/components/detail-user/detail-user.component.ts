@@ -11,25 +11,21 @@ import { selectUserDetail } from 'src/app/state/selectors/users.selector';
   styleUrls: ['./detail-user.component.scss'],
 })
 export class DetailUserComponent implements OnInit {
+
   data$:Observable<any> = new Observable();
 
   options : InAppBrowserOptions = {
-    location : 'yes',//Or 'no' 
-    hidden : 'no', //Or  'yes'
+    hidden : 'no',
     clearcache : 'yes',
     clearsessioncache : 'yes',
-    zoom : 'yes',//Android only ,shows browser zoom controls 
-    hardwareback : 'yes',
-    mediaPlaybackRequiresUserAction : 'no',
-    shouldPauseOnSuspend : 'no', //Android only 
-    closebuttoncaption : 'Close', //iOS only
-    disallowoverscroll : 'no', //iOS only 
-    toolbar : 'yes', //iOS only 
-    enableViewportScale : 'no', //iOS only 
-    allowInlineMediaPlayback : 'no',//iOS only 
-    presentationstyle : 'pagesheet',//iOS only 
-    fullscreen : 'yes',//Windows only    
-};
+    closebuttoncaption : 'Close',
+    disallowoverscroll : 'no',
+    toolbar : 'yes',
+    enableViewportScale : 'no',
+    presentationstyle : 'pagesheet',
+    fullscreen : 'yes'
+  };
+
   constructor(private iab: InAppBrowser,private store:Store) { }
 
   ngOnInit() {
