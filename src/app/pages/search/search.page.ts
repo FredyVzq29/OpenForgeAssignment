@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
 import { AlertController, ToastController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
-import { IUser } from 'src/app/core/models/IUser';
-import { userDetailLoaded } from 'src/app/state/actions/users.actions';
+import { loadUserDetail, userDetailLoaded } from 'src/app/state/actions/users.actions';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { IUser } from 'src/app/models/IUser';
 
 @Component({
   selector: 'app-search',
@@ -19,11 +19,11 @@ export class SearchPage implements OnInit {
   value_pre_search = '';
 
   constructor(
-    private userService:UserService,
     private toastController: ToastController,
     private store: Store<any>,
     private activedRoute:ActivatedRoute,
-    public alertController: AlertController
+    private alertController: AlertController,
+    private userService:UserService
   ) { }
 
   ngOnInit() {
@@ -33,13 +33,10 @@ export class SearchPage implements OnInit {
       this.searchUser();
     }
   }
-
-  ngOnDestroy() {
-    if(this.request != null) this.request.unsubscribe();
-  }
-
+  
   searchUser(){
-    if(this.value_to_search.trim() == '')this.showToast("The value to search is empty");
+    if(this.value_to_search.trim() == '')
+      this.showToast("The value to search is empty");
     else{
       this.request = this.userService.getUserDetail(this.value_to_search).subscribe(
         res=>{
@@ -51,8 +48,9 @@ export class SearchPage implements OnInit {
         }
       );
     }
+    //this.store.dispatch(loadUserDetail({login_name:this.value_to_search}));
+    
   }
-
   createObject():IUser{
     let user_obj:IUser ={
       avatar_url: this.user_data.avatar_url,

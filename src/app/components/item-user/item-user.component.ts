@@ -23,8 +23,7 @@ export class ItemUserComponent implements OnInit {
   }
 
   goToSearchPage(value){
-    let navigateTo = '/tabs/search/' + value;
-    this.router.navigateByUrl(navigateTo);
+    this.router.navigate(['/tabs/search/',value]);
   }
 
 }

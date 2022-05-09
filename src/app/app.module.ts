@@ -8,8 +8,9 @@ import { AppComponent } from './app.component';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from 'src/environments/environment';
 import { ROOT_REDUCERS } from './state/app.state';
+import { EffectsModule } from '@ngrx/effects';
+import { UsersEffects } from './state/effects/users.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +28,8 @@ import { ROOT_REDUCERS } from './state/app.state';
         strictActionImmutability: false,
       },
     }),
-    StoreDevtoolsModule.instrument({maxAge:25, logOnly: environment.production,name:'TEST'})
+    StoreDevtoolsModule.instrument({name:'assig'}),
+    EffectsModule.forRoot([UsersEffects])
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },InAppBrowser],
   bootstrap: [AppComponent],

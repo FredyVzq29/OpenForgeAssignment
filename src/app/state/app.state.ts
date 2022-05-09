@@ -1,5 +1,5 @@
 import { ActionReducerMap } from "@ngrx/store";
-import { IState } from "../core/models/IState";
+import { IState } from "../models/IState";
 import { usersReducer } from "./reducers/users.reducers";
 
 //The data is consulted by the components here like a 'DB'
