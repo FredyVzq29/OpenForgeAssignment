@@ -6,10 +6,8 @@
   <app-ios-tool-bar [page_name]="title_page"></app-ios-tool-bar>
   
   <ion-row>  
-    <ion-col>
-      <ion-list>
-        <app-item-user *ngFor="let a of users_list" [user_obj]="a"></app-item-user>
-      </ion-list>
+    <ion-col>  
+      <app-item-user></app-item-user>
     
       <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
         <ion-infinite-scroll-content

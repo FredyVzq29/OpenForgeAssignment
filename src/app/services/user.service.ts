@@ -14,7 +14,7 @@ export class UserService {
   ) { }
 
   getUsersList(since_){
-    return this.httpClient.get(this.URL + "?since="+since_+"=0&per_page=50")
+    return this.httpClient.get(this.URL + "?since="+since_+"&per_page=50");
   }
 
   getUserDetail(username){
