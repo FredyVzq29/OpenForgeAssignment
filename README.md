@@ -1,41 +1,46 @@
+
 # OpenForgeAssignment
+
 App developed by FredyVzq. Builded in IONIC and deployed in Android and IOS devices.
 
+## Installation
 
-## How to build in Android
+Clone the repo on your folder and execute this commands to run.
 
 ```bash
-  npm i --force
+  npm -i --force
+  ionic serve
+```
+
+### Install in Android
+```bash
   ionic cap add android
-  ionic capacitor build android
-```
-Here is necessary check if Android Studio can load all the resources, if everything is ok (and if you have images for icons and splash screen), close the editor and run this command
-
-```
-npm run resources
+  ionic capacitor build android 
 ```
 
-Open the editor again and install the app in a device.
 
-## How to build in IOS
+### Install in iOS
 
-```bash
-  npm i --force
-```
-
-Here we have two ways to complete.
-```bash
+I have found two ways to do the process.  
+1.-
+  ```bash
     ionic cap add ios
-```
-Or
-```bash
+    ionic cap build ios
+  ```
+2.-
+  ```bash
     npm install @capacitor/ios
     npx cap add ios
-```
-
-Continue with this ...
+    ionic cap build ios
+  ```
+### In both cases
+At this point check if Xcode or Android Studio can open the project automatically and do not throw any errors.
+If you have images for icon and splash screen, execute the following command.
 
 ```bash
-    ionic cap build ios
-    npm run resources //If you have images for icon and splash screen
+  npm run resources
 ```
+## Author
+
+- [@fredyvzq29](https://www.github.com/FredyVzq29)
+
