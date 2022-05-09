@@ -1,4 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { selectList } from 'src/app/state/selectors/users.selector';
 
 @Component({
   selector: 'app-item-user',
@@ -6,10 +10,21 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./item-user.component.scss'],
 })
 export class ItemUserComponent implements OnInit {
-  @Input() user_obj: any ;
-  
-  constructor() { }
 
-  ngOnInit() {}
+  users_list$:Observable<any> = new Observable();
+
+  constructor(
+    private store:Store,
+    private router:Router
+  ) { }
+
+  ngOnInit() {
+    this.users_list$ = this.store.select(selectList);
+  }
+
+  goToSearchPage(value){
+    let navigateTo = '/tabs/search/' + value;
+    this.router.navigateByUrl(navigateTo);
+  }
 
 }

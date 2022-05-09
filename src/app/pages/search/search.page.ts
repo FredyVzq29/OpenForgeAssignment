@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
+import { Store } from '@ngrx/store';
+import { IUser } from 'src/app/core/models/IUser';
+import { userDetailLoaded } from 'src/app/state/actions/users.actions';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -12,12 +16,22 @@ export class SearchPage implements OnInit {
   request = null;
   user_data:any = null;
 
+  value_pre_search = '';
+
   constructor(
     private userService:UserService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private store: Store<any>,
+    private activedRoute:ActivatedRoute,
+    public alertController: AlertController
   ) { }
 
   ngOnInit() {
+    this.value_pre_search = this.activedRoute.snapshot.paramMap.get('search');
+    if(this.value_pre_search != '0'){
+      this.value_to_search = this.value_pre_search;
+      this.searchUser();
+    }
   }
 
   ngOnDestroy() {
@@ -29,18 +43,29 @@ export class SearchPage implements OnInit {
     else{
       this.request = this.userService.getUserDetail(this.value_to_search).subscribe(
         res=>{
-          let response = res;
-          this.user_data = response;
-          
-          console.log(this.user_data);
-          if(this.user_data.bio == null) this.user_data.bio = 'Unassigned bio';
-          if(this.user_data.name == null) this.user_data.name = 'Unassigned name';
-          if(this.user_data.company == null) this.user_data.company = 'Unassigned company';
+          this.user_data = res;
+          this.store.dispatch(userDetailLoaded({user:this.createObject()}));
         },err=>{
           console.log(err);
+          this.showAlert(err.message);
         }
       );
     }
+  }
+
+  createObject():IUser{
+    let user_obj:IUser ={
+      avatar_url: this.user_data.avatar_url,
+      login: this.user_data.login,
+      bio: this.user_data.bio,
+      blog: this.user_data.blog,
+      company: this.user_data.company,
+      id: this.user_data.id,
+      location:this.user_data.location,
+      public_repos:this.user_data.public_repos,
+      name:this.user_data.name
+    }
+    return user_obj;
   }
 
   async showToast(message){
@@ -53,5 +78,18 @@ export class SearchPage implements OnInit {
     });
     toast.present();
   }
+
+  async showAlert(err) {
+    const alert = await this.alertController.create({
+      header: 'Ups!',
+      subHeader: 'An unexpected error occurred',
+      message: err,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+    const { role } = await alert.onDidDismiss();
+  }
+
 
 }
