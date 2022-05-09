@@ -8,7 +8,7 @@ App developed by FredyVzq. Builded in IONIC and deployed in Android and IOS devi
 Clone the repo on your folder and execute this commands to run.
 
 ```bash
-  npm -i --force
+  npm i --force
   ionic serve
 ```
 
